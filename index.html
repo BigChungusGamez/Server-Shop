@@ -39,14 +39,21 @@
         .cosmetic-item p {
             margin: 0 0 1rem;
         }
-        .paypal-button-container {
+        .stripe-button {
             text-align: center;
+            margin: 1rem 0;
         }
-        .paypal-button-container img {
-            width: 100%;
-            max-width: 250px;
+        .stripe-button button {
+            background-color: #6772e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <header>
@@ -56,30 +63,52 @@
         <div class="cosmetic-item">
             <h2>Cool Hat Subscription</h2>
             <p>Price: $5 per month</p>
-            <div class="paypal-button-container">
-                <!-- PayPal subscription button HTML -->
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                </form>
+            <div class="stripe-button">
+                <button id="checkout-button-sku_123">Subscribe</button>
             </div>
         </div>
         <div class="cosmetic-item">
             <h2>Fancy Cape Subscription</h2>
             <p>Price: $10 per month</p>
-            <div class="paypal-button-container">
-                <!-- PayPal subscription button HTML -->
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                </form>
+            <div class="stripe-button">
+                <button id="checkout-button-sku_456">Subscribe</button>
             </div>
         </div>
-        <!-- Add more cosmetic items as needed -->
     </main>
+    <script>
+        var stripe = Stripe('YOUR_PUBLISHABLE_KEY');
+        var checkoutButton = document.getElementById('checkout-button-sku_123');
+
+        checkoutButton.addEventListener('click', function () {
+            stripe.redirectToCheckout({
+                lineItems: [{price: 'sku_123', quantity: 1}],
+                mode: 'subscription',
+                successUrl: 'https://your-website.com/success',
+                cancelUrl: 'https://your-website.com/canceled',
+            })
+            .then(function (result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            });
+        });
+
+        var checkoutButton2 = document.getElementById('checkout-button-sku_456');
+
+        checkoutButton2.addEventListener('click', function () {
+            stripe.redirectToCheckout({
+                lineItems: [{price: 'sku_456', quantity: 1}],
+                mode: 'subscription',
+                successUrl: 'https://your-website.com/success',
+                cancelUrl: 'https://your-website.com/canceled',
+            })
+            .then(function (result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
