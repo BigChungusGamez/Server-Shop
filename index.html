@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmetics Store</title>
     <style>
-        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-<stripe-pricing-table pricing-table-id="prctbl_1PVKhzKKKmyvsXqOwM8ZBYEa"
-publishable-key="pk_live_51PUzs2KKKmyvsXqOdQjIOyuPNPTds15aCRpJkdJ0fv0G4M0DMykVAbNrie3wGkD3EpP0Gc73HrhnofdWs6LYcQcM00Sei9NJHO">
-</stripe-pricing-table>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -30,89 +26,17 @@ publishable-key="pk_live_51PUzs2KKKmyvsXqOdQjIOyuPNPTds15aCRpJkdJ0fv0G4M0DMykVAb
             max-width: 600px;
             padding: 1rem;
         }
-        .cosmetic-item {
-            background: white;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .cosmetic-item h2 {
-            margin: 0 0 0.5rem;
-        }
-        .cosmetic-item p {
-            margin: 0 0 1rem;
-        }
-        .stripe-button {
-            text-align: center;
-            margin: 1rem 0;
-        }
-        .stripe-button button {
-            background-color: #6772e5;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
     </style>
-    <script src="https://js.stripe.com/v3/"></script>
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
 </head>
 <body>
     <header>
-        <h1>Cosmetics Store</h1>
+        <h1>Server Shop</h1>
     </header>
     <main>
-        <div class="cosmetic-item">
-            <h2>Cool Hat Subscription</h2>
-            <p>Price: $5 per month</p>
-            <div class="stripe-button">
-                <button id="checkout-button-sku_123">Subscribe</button>
-            </div>
-        </div>
-        <div class="cosmetic-item">
-            <h2>Fancy Cape Subscription</h2>
-            <p>Price: $10 per month</p>
-            <div class="stripe-button">
-                <button id="checkout-button-sku_456">Subscribe</button>
-            </div>
-        </div>
+        <stripe-pricing-table pricing-table-id="prctbl_1PVKhzKKKmyvsXqOwM8ZBYEa"
+        publishable-key="pk_live_51PUzs2KKKmyvsXqOdQjIOyuPNPTds15aCRpJkdJ0fv0G4M0DMykVAbNrie3wGkD3EpP0Gc73HrhnofdWs6LYcQcM00Sei9NJHO">
+        </stripe-pricing-table>
     </main>
-    <script>
-        var stripe = Stripe('PUBLISHABLE_KEY');
-        var checkoutButton = document.getElementById('checkout-button-sku_123');
-
-        checkoutButton.addEventListener('click', function () {
-            stripe.redirectToCheckout({
-                lineItems: [{price: 'sku_123', quantity: 1}],
-                mode: 'subscription',
-                successUrl: 'https://your-website.com/success',
-                cancelUrl: 'https://your-website.com/canceled',
-            })
-            .then(function (result) {
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            });
-        });
-
-        var checkoutButton2 = document.getElementById('checkout-button-sku_456');
-
-        checkoutButton2.addEventListener('click', function () {
-            stripe.redirectToCheckout({
-                lineItems: [{price: 'sku_456', quantity: 1}],
-                mode: 'subscription',
-                successUrl: 'https://your-website.com/success',
-                cancelUrl: 'https://your-website.com/canceled',
-            })
-            .then(function (result) {
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            });
-        });
-    </script>
 </body>
 </html>
-
