@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,10 +15,8 @@
       width: 100%;
       background-image: url('https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg');
       background-repeat: repeat;
-      background-size: 64px 64px; /* Adjust the size to make the blocks smaller */
+      background-size: 64px 64px;
       color: white;
-    
-     
       padding: 1rem 2rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
@@ -34,8 +33,14 @@
       width: 100%;
       max-width: 1000px;
       margin: 0 auto;
-      text-align: center;  /* Added text-align: center; */
-      padding: 1rem;  /* Added padding */
+      text-align: center;
+      padding: 1rem;
+    }
+    /* Add custom styling for the Stripe pricing table */
+    stripe-pricing-table {
+      width: 100%; /* Adjust this value as needed */
+      max-width: 800px; /* Adjust this value as needed */
+      margin: 0 auto;
     }
   </style>
   <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
@@ -45,15 +50,9 @@
     <h1 class="centered-text">Server Shop</h1>
   </header>
   <main>
-    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-<stripe-pricing-table pricing-table-id="prctbl_1PVKhzKKKmyvsXqOwM8ZBYEa"
+    <stripe-pricing-table pricing-table-id="prctbl_1PVKhzKKKmyvsXqOwM8ZBYEa"
 publishable-key="pk_live_51PUzs2KKKmyvsXqOdQjIOyuPNPTds15aCRpJkdJ0fv0G4M0DMykVAbNrie3wGkD3EpP0Gc73HrhnofdWs6LYcQcM00Sei9NJHO">
 </stripe-pricing-table>
   </main>
 </body>
 </html>
-
-
-
-
-
